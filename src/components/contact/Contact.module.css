@@ -1,0 +1,4 @@
+.contact-info > li {
+  display: flex;
+  gap: 5px;
+}
