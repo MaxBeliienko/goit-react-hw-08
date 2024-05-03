@@ -5,7 +5,7 @@ const RegistrationPage = () => {
   return (
     <>
       <DocumentTitle>Registration</DocumentTitle>
-      <RegistrationForm />;
+      <RegistrationForm />
     </>
   );
 };

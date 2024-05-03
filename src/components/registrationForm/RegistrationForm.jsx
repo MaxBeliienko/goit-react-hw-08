@@ -1,8 +1,11 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useId } from "react";
+import { useId, useState } from "react";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
+import css from "./RegistrationForm.module.css";
+import { FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
 
 const initialValues = {
   name: "",
@@ -26,6 +29,7 @@ const RegistrationForm = () => {
   const emailId = useId();
   const passwordId = useId();
   const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleRegistrationSubmit = (values, actions) => {
     dispatch(register(values));
@@ -38,16 +42,37 @@ const RegistrationForm = () => {
       onSubmit={handleRegistrationSubmit}
       validationSchema={RegistrationSchema}
     >
-      <Form>
+      <Form className={css["form-container"]}>
         <label htmlFor={usernameId}>Name</label>
         <Field type="text" name="name" id={usernameId} />
-        <ErrorMessage name="name" component="span" />
+        <ErrorMessage
+          name="name"
+          component="span"
+          className={css["error-message"]}
+        />
         <label htmlFor={emailId}>Email</label>
         <Field type="email" name="email" id={emailId} />
-        <ErrorMessage name="email" component="span" />
+        <ErrorMessage
+          name="email"
+          component="span"
+          className={css["error-message"]}
+        />
         <label htmlFor={passwordId}>Password</label>
-        <Field type="password" name="password" id={passwordId} />
-        <ErrorMessage name="password" component="span" />
+        <div className={css["password-div"]}>
+          <Field
+            type={showPassword ? "text" : "password"}
+            name="password"
+            id={passwordId}
+          />
+          <span onClick={() => setShowPassword(!showPassword)}>
+            {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+          </span>
+        </div>
+        <ErrorMessage
+          name="password"
+          component="span"
+          className={css["error-message"]}
+        />
 
         <button type="submit">Registration</button>
       </Form>

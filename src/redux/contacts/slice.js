@@ -20,9 +20,14 @@ const handleErrorState = (state, action) => {
 const contactsSlice = createSlice({
   name: "contacts",
   initialState,
+  reducers: {
+    clearContacts(state) {
+      state.items = [];
+    },
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchContacts.pending, (state, action) => {
+      .addCase(fetchContacts.pending, (state) => {
         handlePendingState(state);
       })
       .addCase(fetchContacts.fulfilled, (state, action) => {
@@ -33,7 +38,7 @@ const contactsSlice = createSlice({
         handleErrorState(state, action);
       })
 
-      .addCase(addContact.pending, (state, action) => {
+      .addCase(addContact.pending, (state) => {
         handlePendingState(state);
       })
       .addCase(addContact.fulfilled, (state, action) => {
@@ -44,7 +49,7 @@ const contactsSlice = createSlice({
         handleErrorState(state, action);
       })
 
-      .addCase(deleteContact.pending, (state, action) => {
+      .addCase(deleteContact.pending, (state) => {
         handlePendingState(state);
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
@@ -60,4 +65,5 @@ const contactsSlice = createSlice({
   },
 });
 
+export const { clearContacts } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;

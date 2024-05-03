@@ -1,14 +1,12 @@
-.nav-container {
+.user-menu-container {
   display: flex;
   gap: 5px;
   flex-direction: column;
-  align-items: start;
 }
 
 @media screen and (min-width: 768px) {
-  .nav-container {
+  .user-menu-container {
     flex-direction: row;
     gap: 10px;
-    align-items: center;
   }
 }
