@@ -2,3 +2,9 @@
   display: flex;
   gap: 5px;
 }
+
+.contact-button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}

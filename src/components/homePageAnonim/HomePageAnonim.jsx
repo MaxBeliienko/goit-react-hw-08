@@ -13,6 +13,10 @@ const HomePageAnonim = () => {
             register
           </NavLink>
         }{" "}
+        or{" "}
+        <NavLink to="/login" className={css["registr-link"]}>
+          login
+        </NavLink>{" "}
         and enjoy all the features of the application.
       </p>
     </div>

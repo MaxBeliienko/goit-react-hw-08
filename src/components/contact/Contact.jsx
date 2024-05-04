@@ -1,16 +1,24 @@
 import { FaUser } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
+import ModalDelete from "../modalDelete/ModalDelete";
 import css from "./Contact.module.css";
 import { useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/contacts/operations";
+import { useState } from "react";
 
 const Contact = ({ contact }) => {
+  const [modalDeleteOpen, setModalDeleteOpen] = useState(false);
   const dispatch = useDispatch();
   const { name, number, id } = contact;
 
+  const handleDeleteClick = () => setModalDeleteOpen(true);
+  const handleCancelDelete = () => setModalDeleteOpen(false);
+
   const handleDeleteContact = () => {
     dispatch(deleteContact(id));
+    setModalDeleteOpen(false);
   };
+
   return (
     <>
       <ul className={css["contact-info"]}>
@@ -23,19 +31,17 @@ const Contact = ({ contact }) => {
           {number}
         </li>
       </ul>
-      <div>
-        <button
-          type="button"
-          onClick={() => {
-            console.log("work");
-          }}
-        >
-          Edit
-        </button>
-        <button type="button" onClick={handleDeleteContact}>
+      <div className={css["contact-button-container"]}>
+        <button type="button" onClick={handleDeleteClick}>
           Delete
         </button>
       </div>
+      {modalDeleteOpen && (
+        <ModalDelete
+          confirmDelete={handleDeleteContact}
+          cancelDelete={handleCancelDelete}
+        />
+      )}
     </>
   );
 };
