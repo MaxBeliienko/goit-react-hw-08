@@ -1,11 +1,11 @@
 import DocumentTitle from "../components/DocumentTitle";
 import { useSelector } from "react-redux";
-import { selectLoggedIn } from "../redux/auth/selectors";
+import { selectIsLoggedIn } from "../redux/auth/selectors";
 import HomePageLoggedIn from "../components/homePageLoggedIn/HomePageLoggedIn";
 import HomePageAnonim from "../components/homePageAnonim/HomePageAnonim";
 
 const HomePage = () => {
-  const loggedIn = useSelector(selectLoggedIn);
+  const loggedIn = useSelector(selectIsLoggedIn);
   return (
     <div>
       <DocumentTitle>Home</DocumentTitle>

@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import RestrictedRoute from "../RestrictedRoute";
 import PrivateRoute from "../PrivateRoute";
 import { refreshUser } from "../../redux/auth/operations";
-import { selectRefresh } from "../../redux/auth/selectors";
+import { selectIsRefreshing } from "../../redux/auth/selectors";
 import { selectError, selectLoading } from "../../redux/contacts/selectors";
 
 const HomePage = lazy(() => import("../../pages/HomePage"));
@@ -15,7 +15,7 @@ const ContactsPage = lazy(() => import("../../pages/ContactsPage"));
 
 function App() {
   const dispatch = useDispatch();
-  const isRefreshing = useSelector(selectRefresh);
+  const isRefreshing = useSelector(selectIsRefreshing);
   const error = useSelector(selectError);
   const loading = useSelector(selectLoading);
 
